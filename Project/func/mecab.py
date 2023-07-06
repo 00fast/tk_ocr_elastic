@@ -11,7 +11,7 @@ class TextPreprocessing:
         # 토크나이저 및 불용어 제거
     def preprocess_stop_words(self):  
         text = self.tk_contents.strip()  
-        stopword_dic = ['to', 'to', 'this', 'to', 'to', 'to', 'null', '/', '-', '&', '�' '(', ')', '.', ',']
+        stopword_dic = ['을', '를', '이', '가', '은', '는', 'null', '/', '-','&', '�' '(', ')' '.', ',']
         text = re.sub('[^가-힣]', ' ', text)  # Remove all other characters except for Korean characters
         tokens = self.mecab.morphs(text)
         result = [word for word in tokens if word not in stopword_dic]
