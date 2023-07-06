@@ -12,7 +12,7 @@ class TextExtractor:
         self.file_path = file_path
         self.tk_contents = None
 
-    def process_file(self):
+    def process_file(self, file_path):
         mime = magic.Magic(mime=True)
         file_type = mime.from_file(self.file_path)
 
@@ -24,7 +24,7 @@ class TextExtractor:
             print("옳바른 파일형식이 아닙니다..")
         return self.tk_contents
 
-    def extract_text_from_pdf(self):
+    def extract_text_from_pdf(self, file_path):
         # PDF 파일 TEXT 추출
         raw_pdf = parser.from_file(self.file_path)
         tk_contents = raw_pdf['content']
@@ -37,7 +37,7 @@ class TextExtractor:
             
             reader = easyocr.Reader(['ko'])
 
-            # Change PDF file to images
+            # PDF파일을 IMAGE로 변경
             images = convert_from_path(self.file_path)
 
             self.tk_contents = []  # Use multiple pages
@@ -57,7 +57,7 @@ class TextExtractor:
             self.tk_contents = self.tk_contents.replace("\\", "").replace("\'", "")
             return self.tk_contents
 
-    def extract_text_from_image(self):
+    def extract_text_from_image(self, file_path):
         # EasyOCR Reader
         reader = easyocr.Reader(['ko'])
 

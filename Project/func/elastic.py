@@ -9,6 +9,7 @@ class ElasticSearchIndex:
     def __init__(self, elastic_url):
         self.es = Elasticsearch([elastic_url])
 
+    # 인덱스 생성시 필요한 정보
     def index_poem(self, index_name, doc_id, poem):
         data = self.es.index(index=index_name, id=doc_id, body=poem)
         return data
@@ -17,7 +18,6 @@ class ElasticSearchIndex:
 
 
 # idex 확인하는 출력문 
-
 # index_name = "index_name"
 
 # # 사이즈 만큼 데이터 출력 (데이터 입력되었는지 확인)

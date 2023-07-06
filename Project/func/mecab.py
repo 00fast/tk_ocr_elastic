@@ -7,8 +7,8 @@ class TextPreprocessing:
         self.mecab = Mecab(dicpath=r"C:/mecab/mecab-ko-dic")
         self.tk_contents = tk_contents
         self.processed_stop_words = self.preprocess_stop_words()
+       
         # 토크나이저 및 불용어 제거
-
     def preprocess_stop_words(self):  
         text = self.tk_contents.strip()  
         stopword_dic = ['to', 'to', 'this', 'to', 'to', 'to', 'null', '/', '-', '&', '�' '(', ')', '.', ',']
