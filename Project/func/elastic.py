@@ -10,32 +10,24 @@ class ElasticSearchIndex:
         self.es = Elasticsearch([elastic_url])
 
     # 인덱스 생성시 필요한 정보
-    def index_poem(self, index_name, doc_id, poem):
+    def index_poem(self, index_name, doc_id, preprocessor, preprocessor):
+                
+        # 품사 태깅후 필요한 품사들만 추출
+        VA_words = preprocessor.process_adjectives()
+        VV_words = preprocessor.process_verbs()
+        NNG_words = preprocessor.process_common_nouns()
+        NNP_words = preprocessor.process_proper_nouns()
+        MAG_words = preprocessor.process_common_adverbs()
+
+        
+        poem = {
+            "VA": VA_words,
+            "VV": VV_words,
+            "NNG": NNG_words,
+            "NNP": NNP_words,
+            "MAG": MAG_words,
+        }
         data = self.es.index(index=index_name, id=doc_id, body=poem)
         return data
 
 
-
-
-# idex 확인하는 출력문 
-# index_name = "index_name"
-
-# # 사이즈 만큼 데이터 출력 (데이터 입력되었는지 확인)
-# query = {
-#     "query": {
-#         "match_all": {}
-#     },
-# 	"size": 1000 
-# }
-
-
-# results = es.search(index=index_name, body=query)
-
-
-# hits = results["hits"]["hits"]
-
-
-# for hit in hits:
-#     print("Document ID:", hit["_id"])
-#     print("Data:", hit["_source"])
-#     print()
