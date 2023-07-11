@@ -11,10 +11,13 @@ class TextPreprocessing:
         # 토크나이저 및 불용어 제거
     def preprocess_stop_words(self):  
         text = self.tk_contents.strip()  
-        stopword_dic = ['을', '를', '이', '가', '은', '는', 'null', '/', '-','&', '�' '(', ')' '.', ',']
-        text = re.sub('[^가-힣]', ' ', text)  # Remove all other characters except for Korean characters
+        # 불용어 사전 txt 파일 이용해 삭제             
+        with open('stop_words', 'r', encoding='utf-8') as f:
+            custom_stopwords = [word.strip() for word in f]
+
+        text = re.sub('[^가-힣]', ' ', text)  # 한국어 제외 삭제
         tokens = self.mecab.morphs(text)
-        result = [word for word in tokens if word not in stopword_dic]
+        result = [word for word in tokens if word not in custom_stopwords]
         processed_stop_words = ' '.join(result)
         return processed_stop_words
 
@@ -60,4 +63,10 @@ class TextPreprocessing:
         
         return MAG_words
 
+
+
+        return result
+    
+
+    
 
