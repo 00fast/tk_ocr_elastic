@@ -3,7 +3,7 @@ from gensim.models import Word2Vec
 
 if __name__ == "__main__":
     # 엘라스틱서치, word2vec 모델
-    search = Elasticsearch_Indexsearch("http://34.64.154.112:9200", "word2vec.model")
+    search = Elasticsearch_Indexsearch("http://localhost:9200", "word2vec.model")
 
     # 검색조건
     index_name = "words"
