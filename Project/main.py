@@ -5,8 +5,8 @@ from func.elastic import ElasticSearchIndex
 # main 예시
 if __name__ == "__main__":
     # 사용할 File_path와 elastic url
-    file_path = "D:/work/nlp/Text Mining/text_preprocessing/Project/jpgpoem.jpg"
-    elastic_url = "http://34.64.154.112:9200"
+    file_path = "your_path"
+    elastic_url = "http://localhost:9200"
 
         
     indexer = ElasticSearchIndex(elastic_url)
